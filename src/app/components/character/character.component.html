@@ -1,0 +1,53 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title text-center>{{character.name}}</ion-card-title>
+
+    <ion-card-subtitle text-center>
+      <ion-chip [color]="character.status === 'Alive' ? 'success' : 'danger'">
+        <ion-label>{{character.status}}</ion-label>
+      </ion-chip>
+
+      <ion-chip color="primary">
+        <ion-label>{{character.gender}}</ion-label>
+      </ion-chip>
+
+      <ion-chip color="primary">
+        <ion-label>{{character.species}}</ion-label>
+      </ion-chip>
+    </ion-card-subtitle>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-spinner *ngIf="!character.image"></ion-spinner>
+          <ion-img [src]="character.image"></ion-img>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item >
+            <ion-label class="one-line">
+              <ion-icon slot="start" name="home"></ion-icon>
+              <b>ORIGIN:</b> {{character.origin.name}}
+            </ion-label>
+          </ion-item>
+          <ion-item >
+            <ion-label class="one-line">
+              <ion-icon slot="start" name="pin"></ion-icon>
+              <b>LOCATION: </b>{{character.location.name}}
+            </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button outline color="secondary" expand="block" (click)="showEpisodes()" *ngIf="!modal">Episodes appeared</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>

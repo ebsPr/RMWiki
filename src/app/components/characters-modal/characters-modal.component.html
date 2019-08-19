@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons  slot="start">
+      <ion-button (click)="close()">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="one-line">
+      Characters in {{episode}}
+    </ion-title>
+    <ion-badge color="primary" slot="end">{{characters.length}}</ion-badge>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <component-characters [characters]="characters" [modal]="true"></component-characters>
+</ion-content>

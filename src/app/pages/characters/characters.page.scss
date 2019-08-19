@@ -1,0 +1,21 @@
+
+ion-badge {
+  margin: 22px;
+  padding: 11px;
+  font-size: 20px;
+}
+
+ion-searchbar {
+    ion-icon {
+      &.searchbar-search-icon {
+        top: 0px !important;
+        background-color: red;
+      }
+  }
+}
+
+.item-search {
+  --border-color: white;
+  --border-style: solid;
+  --border-width: 0 0 1px 0;
+}

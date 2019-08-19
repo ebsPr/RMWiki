@@ -1,0 +1,7 @@
+{
+  "name": "diamond-design-framework",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

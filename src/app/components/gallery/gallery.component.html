@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons  slot="start">
+      <ion-button (click)="close()">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="one-line">
+      Gallery of {{episode.name}} <small>{{episode.episode}}</small>
+    </ion-title>
+    <ion-badge color="primary" slot="end">{{gallerySrc.length}}</ion-badge>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item *ngIf="this.gallerySrc.length <= 0">
+    Sorry! we don't have images from this episode
+  </ion-item>
+  <ion-list>
+    <ion-item *ngFor="let img of gallerySrc; let i = index" text-center>
+      <ion-spinner *ngIf="!gallerySrcLoading[i]" ></ion-spinner>
+      <ion-img [src]="img | async" *ngIf="gallerySrcLoading[i] === true"></ion-img>
+    </ion-item>
+
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" >
+      <ion-infinite-scroll-content
+              loadingSpinner="bubbles"
+              loadingText="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-list>
+</ion-content>

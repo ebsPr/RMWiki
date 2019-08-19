@@ -1,0 +1,16 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>
+      {{episode.name}}
+      <small>{{episode.episode}}</small>
+    </ion-card-title>
+
+  </ion-card-header>
+  <ion-card-content text-center>
+    <ion-spinner *ngIf="!episode.screenshot" ></ion-spinner>
+    <ion-img [src]="episode.screenshot" margin="5" *ngIf="episode.screenshot"></ion-img>
+    <p>{{synopsis}}</p>
+    <ion-button outline color="secondary" expand="block" *ngIf="!modal" (click)="showCharacters()">Characters</ion-button>
+    <ion-button outline color="secondary" expand="block" *ngIf="!modal" (click)="showImages()">Images</ion-button>
+  </ion-card-content>
+</ion-card>

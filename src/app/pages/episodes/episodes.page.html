@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Episodes
+    </ion-title>
+    <ion-badge color="primary" slot="end">{{max}}</ion-badge>
+  </ion-toolbar>
+  <ion-grid class="ion-grid-search">
+    <ion-row>
+      <ion-col size="6">
+
+        <ion-select [(ngModel)]="searchSeason"  interface="popover" placeholder="Filter by Season" (ionChange)="loadFromSearch()">
+          <ion-select-option value="1">Season 1</ion-select-option>
+          <ion-select-option value="2">Season 2</ion-select-option>
+          <ion-select-option value="3">Season 3</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button *ngIf="this.searchSeason != ''" outline color="secondary" expand="block" (click)="searchSeason = ''" class="remove-filter">Remove filter</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row no-padding no-margin>
+      <ion-col no-padding no-margin>
+          <ion-item class="ion-item-search-episode" lines="none">
+              <ion-icon name="search" slot="start"></ion-icon>
+              <ion-input (ionChange)="loadFromSearch()" [(ngModel)]="searchName" placeholder="Search by title"></ion-input>
+              <ion-icon name="close" slot="end" (click)="this.searchName = ''" *ngIf="this.searchName != ''"></ion-icon>
+          </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+
+
+<ion-content>
+  <ion-spinner *ngIf="episodes.length === 0 && !notFound"></ion-spinner>
+  <component-not-found *ngIf="notFound"></component-not-found>
+
+  <component-episodes
+          [episodes]="episodes"
+          (loadData)="loadFromInfiniteScroll($event)"
+          [synopsis]="synopsis"
+          ></component-episodes>
+</ion-content>

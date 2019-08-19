@@ -1,0 +1,14 @@
+  <ion-list>
+      <component-episode
+              *ngFor="let e of episodes"
+              [episode]="e"
+              [synopsis]="synopsis[e.episode]"
+              [modal]="modal">
+      </component-episode>
+      <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" *ngIf="!modal">
+          <ion-infinite-scroll-content
+                  loadingSpinner="bubbles"
+                  loadingText="Loading more data...">
+          </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+  </ion-list>
